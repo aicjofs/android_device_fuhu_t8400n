@@ -1,0 +1,21 @@
+
+$(call inherit-product-if-exists, vendor/fuhu/t8400n/t8400n-vendor.mk)
+
+DEVICE_PACKAGE_OVERLAYS += device/fuhu/t8400n/overlay
+
+TARGET_SCREEN_HEIGHT := 1200
+TARGET_SCREEN_WIDTH := 1920
+
+LOCAL_PATH := device/fuhu/t8400n
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
+
+
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
